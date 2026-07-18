@@ -8,6 +8,8 @@
 <meta name="keywords" content="metronome, online metronome, tuner, chromatic tuner, tone generator, frequency generator, practice tool for musicians, 節拍器, 调音器, 音頻產生器, メトロノーム, チューナー, 音声発生器, 메트로놈, 튜너, 음원 발생기, métronome, accordeur, générateur de tonalité, metrónomo, afinador, generador de tono">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#16130f">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316130f'/%3E%3Cpath d='M22 46 L32 14 L42 46 Z' fill='none' stroke='%23f1e8d6' stroke-width='3' stroke-linejoin='round'/%3E%3Cline x1='24.5' y1='38' x2='39.5' y2='38' stroke='%23f1e8d6' stroke-width='2.5'/%3E%3Cline x1='32' y1='15' x2='24' y2='38' stroke='%236fae3e' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='38' r='4.5' fill='%23ffd85e' stroke='%2316130f' stroke-width='1.5'/%3E%3Ccircle cx='32' cy='15' r='2.5' fill='%2363e6d6'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316130f'/%3E%3Cpath d='M22 46 L32 14 L42 46 Z' fill='none' stroke='%23f1e8d6' stroke-width='3' stroke-linejoin='round'/%3E%3Cline x1='24.5' y1='38' x2='39.5' y2='38' stroke='%23f1e8d6' stroke-width='2.5'/%3E%3Cline x1='32' y1='15' x2='24' y2='38' stroke='%236fae3e' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='38' r='4.5' fill='%23ffd85e' stroke='%2316130f' stroke-width='1.5'/%3E%3Ccircle cx='32' cy='15' r='2.5' fill='%2363e6d6'/%3E%3C/svg%3E">
 <meta name="author" content="Pendolo">
 
 <!-- Open Graph -->
@@ -1521,31 +1523,50 @@
     }
   }
 
-  // Input-level (loudness) meter — RMS of the raw signal converted to dBFS,
-  // with VU-meter-style ballistics (fast attack, slower release) so it
-  // doesn't jitter around on every frame. This reflects the mic input level,
+  // Input-level (loudness) meter — reflects the raw mic input level in dBFS,
+  // with VU-meter-style ballistics (fast attack, slower release) so it doesn't
+  // jitter on every frame. This is a relative reading (0 dBFS = digital max),
   // not a calibrated dB-SPL reading (the browser doesn't expose that).
-  const DB_FLOOR = -60;
+  //
+  // We blend the window's RMS with its sample peak: RMS alone, averaged over a
+  // 4096-sample window that includes the quiet gaps between words, reads far too
+  // low to feel responsive, so the peak lets loud sounds actually move the bar.
+  const DB_FLOOR = -70;   // this and below is treated as silence (bar empty)
+  const DB_CEIL  = -6;    // loud, near-clipping input (bar full)
   let dbSmoothed = DB_FLOOR;
   function computeDbFS(buf){
-    let sumSquares = 0;
-    for (let i = 0; i < buf.length; i++){ const v = buf[i]; sumSquares += v * v; }
+    let sumSquares = 0, peak = 0;
+    for (let i = 0; i < buf.length; i++){
+      const v = buf[i];
+      sumSquares += v * v;
+      const a = v < 0 ? -v : v;
+      if (a > peak) peak = a;
+    }
     const rms = Math.sqrt(sumSquares / buf.length);
-    const db = rms > 0 ? 20 * Math.log10(rms) : DB_FLOOR;
-    return Math.max(DB_FLOOR, db);
+    const level = Math.max(rms, peak * 0.5); // peak-informed so loud sounds register
+    const db = level > 0 ? 20 * Math.log10(level) : DB_FLOOR;
+    return Math.max(DB_FLOOR, Math.min(0, db));
+  }
+  function dbZone(db){
+    if (db < -45) return { name: 'QUIET', color: '#8a8378' };
+    if (db < -18) return { name: 'GOOD',  color: 'var(--wk-highlight-ink)' };
+    return { name: 'LOUD', color: 'var(--wk-red)' };
   }
   function updateDbMeter(buf){
     const db = computeDbFS(buf);
-    const rate = (db > dbSmoothed) ? 0.6 : 0.12; // snap up fast, ease back down
+    const rate = (db > dbSmoothed) ? 0.6 : 0.15; // snap up fast, ease back down
     dbSmoothed += (db - dbSmoothed) * rate;
-    const pct = Math.max(0, Math.min(100, ((dbSmoothed - DB_FLOOR) / (0 - DB_FLOOR)) * 100));
+    const pct = Math.max(0, Math.min(100, ((dbSmoothed - DB_FLOOR) / (DB_CEIL - DB_FLOOR)) * 100));
     dbMeterFill.style.width = pct + '%';
-    dbReadout.textContent = Math.round(dbSmoothed) + ' dB';
+    const zone = dbZone(dbSmoothed);
+    dbReadout.textContent = Math.round(dbSmoothed) + ' dBFS · ' + zone.name;
+    dbReadout.style.color = zone.color;
   }
   function resetDbMeter(){
     dbSmoothed = DB_FLOOR;
     dbMeterFill.style.width = '0%';
     dbReadout.textContent = '—';
+    dbReadout.style.color = '';
   }
   // Whether *any* form of getUserMedia is exposed at all (true in virtually every
   // modern browser). Whether it actually succeeds depends on the browser's own
@@ -1703,6 +1724,7 @@
     statusPill.className = 'status-pill';
     setNeedle(0);
     resetSmoothing();
+    resetDbMeter();
     silenceCounter = 0;
     setBubble('standby', true);
   }
@@ -1739,6 +1761,7 @@
     frameSkip = (frameSkip + 1) % 2; // ~30fps -> ~15fps analysis, plenty for tuning
     if (frameSkip === 0){
       readTimeDomainData(analyser, dataArray);
+      updateDbMeter(dataArray);
       const { freq, clarity } = autoCorrelate(dataArray, tunerAudioCtx.sampleRate);
 
       if (freq === -1){
