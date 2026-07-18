@@ -2,8 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<title>Pendolo — Craftronome &amp; Dear Diary Tuner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+<title>Pendolo – Free Online Metronome, Tuner &amp; Tone Generator for Musicians</title>
+<meta name="description" content="Pendolo is a free browser-based metronome, chromatic tuner, and tone generator built for musicians and instrument learners. No install, no account — works on phone, tablet, or desktop. 免费节拍器、调音器和音频发生器 · 無料メトロノーム・チューナー・音声発生器 · 무료 메트로놈, 튜너, 음원 발생기 · Métronome, accordeur et générateur de tonalité gratuits · Metrónomo, afinador y generador de tono gratis.">
+<meta name="keywords" content="metronome, online metronome, tuner, chromatic tuner, tone generator, frequency generator, practice tool for musicians, 節拍器, 调音器, 音頻產生器, メトロノーム, チューナー, 音声発生器, 메트로놈, 튜너, 음원 발생기, métronome, accordeur, générateur de tonalité, metrónomo, afinador, generador de tono">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#16130f">
+<meta name="author" content="Pendolo">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pendolo – Free Online Metronome, Tuner &amp; Tone Generator">
+<meta property="og:description" content="A free browser-based metronome, chromatic tuner, and tone generator for musicians and instrument learners. No install required.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="es_ES">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pendolo – Free Online Metronome, Tuner &amp; Tone Generator">
+<meta name="twitter:description" content="A free browser-based metronome, chromatic tuner, and tone generator for musicians and instrument learners.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%B5%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pendolo",
+  "alternateName": ["节拍器 调音器", "メトロノーム チューナー", "메트로놈 튜너", "Métronome Accordeur", "Metrónomo Afinador"],
+  "description": "A free browser-based metronome, chromatic tuner, and tone generator for musicians and instrument learners.",
+  "applicationCategory": "MusicApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "inLanguage": ["en", "zh", "ja", "ko", "fr", "es"],
+  "featureList": ["Metronome with tap tempo and tempo markings", "Chromatic tuner with pitch detection", "Tone generator with note, frequency, and instrument-style waveform selection"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Permanent+Marker&family=Kalam:wght@400;700&family=Comic+Neue:wght@400;700&family=Titan+One&family=Baloo+2:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -73,7 +112,7 @@
     display:flex;
     align-items:flex-start;
     justify-content:center;
-    padding: 28px 16px 60px;
+    padding: max(18px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
     transition: background 0.5s ease;
   }
   body.theme-minecraft{
@@ -100,7 +139,7 @@
 
   /* ---------- Header ---------- */
   .brand{ text-align:center; margin-bottom: 16px; }
-  .brand h1{
+  .brand h2{
     font-family:'IBM Plex Mono', monospace;
     font-weight: 600;
     font-size: 1rem;
@@ -232,7 +271,7 @@
   .bpm-display{ text-align:center; margin: 4px 0 2px; }
   .bpm-number{
     font-family:'VT323', monospace;
-    font-size: 7rem;
+    font-size: clamp(4.6rem, 20vw, 7rem);
     line-height: 1;
     color: var(--mc-gold);
     text-shadow: 4px 4px 0 var(--mc-text-shadow);
@@ -469,7 +508,7 @@
     text-align:center;
     font-family:'Kalam', cursive;
     font-weight: 700;
-    font-size: 3.4rem;
+    font-size: clamp(2.6rem, 12vw, 3.4rem);
     line-height: 1;
     margin-top: 4px;
     color: var(--wk-ink);
@@ -514,6 +553,47 @@
     border-color: var(--wk-highlight-ink);
     background: var(--wk-highlight);
     transform: rotate(-1deg);
+  }
+
+  .db-meter-wrap{ max-width: 260px; margin: 0 auto 16px; }
+  .db-meter-label{
+    text-align:center;
+    font-family:'Permanent Marker', cursive;
+    font-size: 0.75rem;
+    color: #8a8378;
+    margin-bottom: 6px;
+    transform: rotate(-1deg);
+  }
+  .db-meter{
+    position:relative;
+    height: 16px;
+    background: #fff;
+    border: 2px solid var(--wk-ink);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+  }
+  .db-meter-fill{
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--wk-highlight-ink) 0%, #d9b23c 65%, var(--wk-red) 100%);
+    transition: width 0.05s linear;
+  }
+  .db-meter-scale{
+    display:flex; justify-content:space-between;
+    font-family:'Comic Neue', sans-serif;
+    font-size: 0.6rem;
+    font-style: italic;
+    color: #a89f8e;
+    margin-top: 3px;
+  }
+  .db-readout{
+    text-align:center;
+    margin-top: 4px;
+    font-family:'Comic Neue', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--wk-ink);
   }
 
   .tuner-msg{
@@ -614,12 +694,12 @@
       linear-gradient(180deg, #8fd4f2 0%, #8fd4f2 56%, #b7b9a8 56%, #b7b9a8 100%);
   }
   .syn-readout{
-    display:flex; align-items:baseline; justify-content:center; gap: 6px;
+    display:flex; flex-wrap: wrap; align-items:baseline; justify-content:center; gap: 6px;
     margin-top: 10px;
   }
   .syn-freq{
     font-family:'Titan One', cursive;
-    font-size: 2.3rem;
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
     color: #ffffff;
     font-variant-numeric: tabular-nums;
     -webkit-text-stroke: 2px #1c1c1c;
@@ -816,14 +896,68 @@
     background: linear-gradient(180deg, var(--syn-red), #0077b8);
     color: #fff;
   }
+
+  .sr-only{
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Global safety net so nothing can force horizontal scrolling on narrow phones */
+  html, body{ overflow-x: hidden; }
+
+  /* Tighter spacing on narrow phones (iPhone SE up through standard iPhones) */
+  @media (max-width: 400px){
+    body{ padding-top: 14px; padding-bottom: 20px; }
+    .brand{ margin-bottom: 10px; }
+    .mode-toggle{ margin-bottom: 14px; }
+    #metronomePanel, #tunerPanel, #tonePanel{ padding-top: 18px; padding-bottom: 18px; }
+
+    .beat-stage{ height: 118px; }
+    .note-block{ width: 76px; height: 76px; }
+    .tempo-presets{ margin-bottom: 10px; }
+    .tempo-marking{ margin-bottom: 10px; }
+    .bpm-controls{ margin-bottom: 12px; }
+    .beat-row{ margin-bottom: 14px; }
+    .row-between{ margin-bottom: 14px; }
+
+    .spiral-holes{ height: 12px; margin-bottom: 10px; }
+    .wk-character{ margin-bottom: 10px; }
+    .gauge-wrap svg{ width: 220px; height: auto; }
+    .status-row{ margin: 10px 0 14px; }
+
+    .syn-mascot svg{ width: 52px; height: 64px; }
+    .syn-mascot{ margin-bottom: 8px; }
+    .syn-screen{ margin-bottom: 12px; padding: 8px 10px 10px; }
+    #scopeCanvas{ height: 68px; }
+    .note-picker{ margin-bottom: 12px; }
+    .syn-two-col{ margin-bottom: 12px; gap: 10px; }
+    .custom-freq-row{ margin-bottom: 12px; }
+    .waveform-picker{ margin-bottom: 12px; }
+    .waveform-picker button{ font-size: 0.5rem; padding: 8px 2px 6px; }
+    .volume-row{ margin-bottom: 16px; }
+
+    footer{ margin-top: 14px; }
+  }
 </style>
 </head>
 <body class="theme-minecraft">
 
+<h1 class="sr-only">Pendolo — Free Online Metronome, Tuner, and Tone Generator</h1>
+<p class="sr-only" lang="zh">Pendolo 是一款免费的在线节拍器、调音器和音频发生器，专为乐器学习者和演奏者设计。</p>
+<p class="sr-only" lang="ja">Pendolo は、楽器学習者や演奏者のための無料オンラインメトロノーム・チューナー・音声発生器です。</p>
+<p class="sr-only" lang="ko">Pendolo는 악기를 배우는 사람과 연주자를 위한 무료 온라인 메트로놈, 튜너, 음원 발생기입니다.</p>
+<p class="sr-only" lang="fr">Pendolo est un métronome, un accordeur et un générateur de tonalité gratuits en ligne, conçus pour les musiciens et les apprenants d'instruments.</p>
+<p class="sr-only" lang="es">Pendolo es un metrónomo, afinador y generador de tono gratuitos en línea, diseñados para músicos y estudiantes de instrumentos.</p>
+
 <div class="app">
 
   <div class="brand">
-    <h1>Pendolo</h1>
+    <h2>Pendolo</h2>
     <p>metronome · tuner · tone lab</p>
   </div>
 
@@ -933,6 +1067,17 @@
       <div class="status-pill" id="statusPill">STANDBY</div>
     </div>
 
+    <div class="db-meter-wrap">
+      <div class="db-meter-label">Volume-O-Meter™</div>
+      <div class="db-meter">
+        <div class="db-meter-fill" id="dbMeterFill"></div>
+      </div>
+      <div class="db-meter-scale">
+        <span>quiet</span><span>loud</span>
+      </div>
+      <div class="db-readout" id="dbReadout">—</div>
+    </div>
+
     <p class="tuner-msg" id="tunerMsg">Tap the button below and allow microphone access to begin.</p>
 
     <button class="primary-btn" id="micBtn" type="button">🎤 Press mic to begin tuning</button>
@@ -1003,17 +1148,33 @@
         <svg viewBox="0 0 28 16" width="28" height="16"><path d="M0 8 C4 0, 10 0, 14 8 C18 16, 24 16, 28 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         SINE
       </button>
-      <button data-wave="triangle" type="button">
-        <svg viewBox="0 0 28 16" width="28" height="16"><path d="M0 12 L7 2 L14 12 L21 2 L28 12" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        TRI
+      <button data-wave="piano" type="button">
+        <svg viewBox="0 0 28 18" width="28" height="18">
+          <rect x="1" y="1" width="26" height="16" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <line x1="8" y1="1" x2="8" y2="17" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="14" y1="1" x2="14" y2="17" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="20" y1="1" x2="20" y2="17" stroke="currentColor" stroke-width="1.1"/>
+          <rect x="5" y="1" width="3" height="10" fill="currentColor"/>
+          <rect x="12" y="1" width="3" height="10" fill="currentColor"/>
+          <rect x="18" y="1" width="3" height="10" fill="currentColor"/>
+        </svg>
+        PIANO
       </button>
-      <button data-wave="sawtooth" type="button">
-        <svg viewBox="0 0 28 16" width="28" height="16"><path d="M0 14 L7 2 L7 14 L14 2 L14 14 L21 2 L21 14 L28 2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        SAW
+      <button data-wave="violin" type="button">
+        <svg viewBox="0 0 20 30" width="16" height="22">
+          <path d="M10 2 C4 2 3 8 6 11 C2 13 2 20 6 22 C4 25 6 28 10 28 C14 28 16 25 14 22 C18 20 18 13 14 11 C17 8 16 2 10 2 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+        VIOLIN
       </button>
-      <button data-wave="square" type="button">
-        <svg viewBox="0 0 28 16" width="28" height="16"><path d="M0 3 L0 3 L7 3 L7 13 L14 13 L14 3 L21 3 L21 13 L28 13" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        SQR
+      <button data-wave="flute" type="button">
+        <svg viewBox="0 0 28 10" width="28" height="10">
+          <line x1="1" y1="5" x2="27" y2="5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="4" cy="5" r="1.6" fill="currentColor"/>
+          <circle cx="12" cy="5" r="1.2" fill="none" stroke="currentColor" stroke-width="0.9"/>
+          <circle cx="17" cy="5" r="1.2" fill="none" stroke="currentColor" stroke-width="0.9"/>
+          <circle cx="22" cy="5" r="1.2" fill="none" stroke="currentColor" stroke-width="0.9"/>
+        </svg>
+        FLUTE
       </button>
     </div>
 
@@ -1335,6 +1496,8 @@
   const needle        = document.getElementById('needle');
   const ticksGroup    = document.getElementById('ticks');
   const speechBubble  = document.getElementById('speechBubble');
+  const dbMeterFill   = document.getElementById('dbMeterFill');
+  const dbReadout     = document.getElementById('dbReadout');
 
   // --- Safari / older-browser compatibility shims ---
   if (navigator.mediaDevices === undefined) navigator.mediaDevices = {};
@@ -1356,6 +1519,33 @@
       analyserNode.getByteTimeDomainData(bytes);
       for (let i=0; i<bytes.length; i++) out[i] = (bytes[i]-128)/128;
     }
+  }
+
+  // Input-level (loudness) meter — RMS of the raw signal converted to dBFS,
+  // with VU-meter-style ballistics (fast attack, slower release) so it
+  // doesn't jitter around on every frame. This reflects the mic input level,
+  // not a calibrated dB-SPL reading (the browser doesn't expose that).
+  const DB_FLOOR = -60;
+  let dbSmoothed = DB_FLOOR;
+  function computeDbFS(buf){
+    let sumSquares = 0;
+    for (let i = 0; i < buf.length; i++){ const v = buf[i]; sumSquares += v * v; }
+    const rms = Math.sqrt(sumSquares / buf.length);
+    const db = rms > 0 ? 20 * Math.log10(rms) : DB_FLOOR;
+    return Math.max(DB_FLOOR, db);
+  }
+  function updateDbMeter(buf){
+    const db = computeDbFS(buf);
+    const rate = (db > dbSmoothed) ? 0.6 : 0.12; // snap up fast, ease back down
+    dbSmoothed += (db - dbSmoothed) * rate;
+    const pct = Math.max(0, Math.min(100, ((dbSmoothed - DB_FLOOR) / (0 - DB_FLOOR)) * 100));
+    dbMeterFill.style.width = pct + '%';
+    dbReadout.textContent = Math.round(dbSmoothed) + ' dB';
+  }
+  function resetDbMeter(){
+    dbSmoothed = DB_FLOOR;
+    dbMeterFill.style.width = '0%';
+    dbReadout.textContent = '—';
   }
   // Whether *any* form of getUserMedia is exposed at all (true in virtually every
   // modern browser). Whether it actually succeeds depends on the browser's own
@@ -1718,6 +1908,25 @@
   let toneIsPlaying = false;
   let scopeRafId = null;
 
+  // Violin vibrato (frequency LFO) and flute breath noise — these only exist
+  // while a violin/flute tone is actually sounding.
+  let toneVibratoLFO = null;
+  let toneVibratoGain = null;
+  let toneNoiseSource = null;
+  let toneNoiseFilter = null;
+  let toneNoiseGain = null;
+
+  // Piano notes decay naturally rather than sustaining, so instead of one
+  // continuous oscillator we re-strike a fresh note on a steady pulse —
+  // 30 BPM, i.e. one strike every 2 seconds.
+  const PIANO_BPM = 60;
+  const PIANO_INTERVAL = 60 / PIANO_BPM; // 1.0s between strikes
+  const PIANO_NOTE_DURATION = 0.9;       // seconds of decay per strike
+  const PIANO_LOOKAHEAD = 25.0;          // ms
+  const PIANO_SCHEDULE_AHEAD = 0.15;     // sec
+  let pianoNextNoteTime = 0;
+  let pianoSchedulerTimer = null;
+
   function noteToFrequency(letter, accidental, octave){
     let semitone = SEMITONES_FROM_C[letter];
     if (accidental === 'sharp') semitone += 1;
@@ -1744,11 +1953,22 @@
       : (toneNote + accidentalSymbol(toneAccidental) + toneOctave);
   }
 
+  function vibratoDepthHz(freq){
+    const cents = (toneWave === 'violin') ? 25 : 12;
+    return freq * (Math.pow(2, cents / 1200) - 1);
+  }
+
   function applyLiveFrequency(){
     if (toneIsPlaying && toneOsc){
       const now = toneAudioCtx.currentTime;
       toneOsc.frequency.cancelScheduledValues(now);
       toneOsc.frequency.setTargetAtTime(toneFreq, now, 0.015);
+      if (toneVibratoGain){
+        toneVibratoGain.gain.setTargetAtTime(vibratoDepthHz(toneFreq), now, 0.05);
+      }
+      if (toneNoiseFilter){
+        toneNoiseFilter.frequency.setTargetAtTime(Math.max(800, toneFreq * 2), now, 0.05);
+      }
     }
   }
 
@@ -1796,14 +2016,56 @@
     if (e.key === 'Enter') applyCustomFrequency();
   });
 
+  // Simple additive-synthesis approximations of instrument timbres, built as
+  // custom PeriodicWaves (the Web Audio API has no built-in "piano"/"violin"/
+  // "flute" oscillator type, so we shape the harmonic series ourselves).
+  const INSTRUMENT_HARMONICS = {
+    piano:  [1, 0.55, 0.33, 0.18, 0.14, 0.10, 0.07, 0.05, 0.03, 0.02],
+    violin: [1, 0.75, 0.55, 0.45, 0.40, 0.30, 0.25, 0.20, 0.15, 0.12, 0.08],
+    flute:  [1, 0.12, 0.06, 0.02]
+  };
+  let toneWaveCache = {};
+  function getPeriodicWave(name){
+    if (!toneWaveCache[name]){
+      const harmonics = INSTRUMENT_HARMONICS[name];
+      const real = new Float32Array(harmonics.length + 1);
+      const imag = new Float32Array(harmonics.length + 1);
+      for (let i = 0; i < harmonics.length; i++) imag[i+1] = harmonics[i];
+      toneWaveCache[name] = toneAudioCtx.createPeriodicWave(real, imag);
+    }
+    return toneWaveCache[name];
+  }
+  function applyWaveform(osc){
+    if (toneWave === 'sine'){
+      osc.type = 'sine';
+    } else {
+      osc.setPeriodicWave(getPeriodicWave(toneWave));
+    }
+  }
+
   waveformPicker.addEventListener('click', e => {
     const btn = e.target.closest('button[data-wave]');
     if (!btn) return;
     [...waveformPicker.children].forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    const previousWave = toneWave;
     toneWave = btn.dataset.wave;
-    if (toneIsPlaying && toneOsc){
-      toneOsc.type = toneWave;
+
+    if (toneIsPlaying){
+      const wasPiano = (previousWave === 'piano');
+      const isPiano = (toneWave === 'piano');
+      if (wasPiano && !isPiano){
+        stopPianoScheduler(); // let the last strike ring out naturally
+        startContinuousOscillator();
+      } else if (!wasPiano && isPiano){
+        stopContinuousOscillator();
+        startPianoScheduler();
+      } else if (!wasPiano && !isPiano){
+        // switching among sine/violin/flute — rebuild so vibrato/breath layers
+        // attach or detach correctly for the newly chosen instrument
+        stopContinuousOscillator();
+        startContinuousOscillator();
+      }
     }
   });
 
@@ -1813,12 +2075,17 @@
   function refreshVolumeLabel(){
     volumeValue.textContent = volumeSlider.value + '%';
   }
+  const FLUTE_NOISE_LEVEL = 0.12; // breath-noise layer relative to main tone volume
+
   volumeSlider.addEventListener('input', () => {
     refreshVolumeLabel();
     if (toneIsPlaying && toneGain){
       const now = toneAudioCtx.currentTime;
       toneGain.gain.cancelScheduledValues(now);
       toneGain.gain.setTargetAtTime(currentGain(), now, 0.03);
+      if (toneNoiseGain){
+        toneNoiseGain.gain.setTargetAtTime(currentGain() * FLUTE_NOISE_LEVEL, now, 0.03);
+      }
     }
   });
   refreshVolumeLabel();
@@ -1855,6 +2122,144 @@
   }
   drawFlatScope();
 
+  function createNoiseSource(){
+    const bufferSize = toneAudioCtx.sampleRate * 2;
+    const buffer = toneAudioCtx.createBuffer(1, bufferSize, toneAudioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+    const source = toneAudioCtx.createBufferSource();
+    source.buffer = buffer;
+    source.loop = true;
+    return source;
+  }
+
+  function startContinuousOscillator(){
+    toneOsc = toneAudioCtx.createOscillator();
+    toneGain = toneAudioCtx.createGain();
+    toneOsc.frequency.value = toneFreq;
+    applyWaveform(toneOsc);
+
+    const now = toneAudioCtx.currentTime;
+    // A bow needs a moment to grip the string, and breath takes a moment to
+    // establish airflow — so violin/flute get a gentler swell-in than sine.
+    const attackTime = (toneWave === 'violin') ? 0.12 : (toneWave === 'flute') ? 0.09 : 0.06;
+    toneGain.gain.setValueAtTime(0.0001, now);
+    toneGain.gain.linearRampToValueAtTime(currentGain(), now + attackTime);
+
+    toneOsc.connect(toneGain);
+    toneGain.connect(toneAnalyser);
+    toneOsc.start();
+
+    // Violin & flute get a gentle pitch vibrato — real sustained tones from
+    // bowed or blown instruments are almost never perfectly static in pitch.
+    if (toneWave === 'violin' || toneWave === 'flute'){
+      toneVibratoLFO = toneAudioCtx.createOscillator();
+      toneVibratoLFO.type = 'sine';
+      toneVibratoLFO.frequency.value = (toneWave === 'violin') ? 5.5 : 4.5;
+      toneVibratoGain = toneAudioCtx.createGain();
+      toneVibratoGain.gain.value = vibratoDepthHz(toneFreq);
+      toneVibratoLFO.connect(toneVibratoGain);
+      toneVibratoGain.connect(toneOsc.frequency);
+      toneVibratoLFO.start();
+    }
+
+    // Flute gets a soft, filtered breath-noise layer mixed underneath the tone.
+    if (toneWave === 'flute'){
+      toneNoiseSource = createNoiseSource();
+      toneNoiseFilter = toneAudioCtx.createBiquadFilter();
+      toneNoiseFilter.type = 'bandpass';
+      toneNoiseFilter.frequency.value = Math.max(800, toneFreq * 2);
+      toneNoiseFilter.Q.value = 0.7;
+      toneNoiseGain = toneAudioCtx.createGain();
+      toneNoiseGain.gain.setValueAtTime(0.0001, now);
+      toneNoiseGain.gain.linearRampToValueAtTime(currentGain() * FLUTE_NOISE_LEVEL, now + attackTime);
+      toneNoiseSource.connect(toneNoiseFilter);
+      toneNoiseFilter.connect(toneNoiseGain);
+      toneNoiseGain.connect(toneAnalyser);
+      toneNoiseSource.start();
+    }
+  }
+
+  function stopContinuousOscillator(){
+    if (!toneOsc) return;
+    const now = toneAudioCtx.currentTime;
+    try{
+      toneGain.gain.cancelScheduledValues(now);
+      toneGain.gain.setValueAtTime(toneGain.gain.value, now);
+      toneGain.gain.linearRampToValueAtTime(0.0001, now + 0.05);
+      toneOsc.stop(now + 0.07);
+    } catch(e){ /* ignore */ }
+    if (toneVibratoLFO){
+      try{ toneVibratoLFO.stop(now + 0.07); } catch(e){ /* ignore */ }
+      toneVibratoLFO = null;
+      toneVibratoGain = null;
+    }
+    if (toneNoiseSource){
+      try{
+        toneNoiseGain.gain.cancelScheduledValues(now);
+        toneNoiseGain.gain.setValueAtTime(toneNoiseGain.gain.value, now);
+        toneNoiseGain.gain.linearRampToValueAtTime(0.0001, now + 0.05);
+        toneNoiseSource.stop(now + 0.07);
+      } catch(e){ /* ignore */ }
+      toneNoiseSource = null;
+      toneNoiseFilter = null;
+      toneNoiseGain = null;
+    }
+    toneOsc = null;
+    toneGain = null;
+  }
+
+  // A single struck piano note: fast attack, exponential decay (no sustain —
+  // real piano strings just ring down after the hammer strike), plus a brief
+  // bright overtone "thump" at the very start to suggest the hammer transient.
+  function playPianoNote(freq, gainPeak, duration){
+    const now = toneAudioCtx.currentTime;
+    const peak = Math.max(0.0001, gainPeak);
+
+    const noteGain = toneAudioCtx.createGain();
+    noteGain.gain.setValueAtTime(0.0001, now);
+    noteGain.gain.linearRampToValueAtTime(peak, now + 0.006);
+    noteGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+    noteGain.connect(toneAnalyser);
+
+    const osc = toneAudioCtx.createOscillator();
+    osc.setPeriodicWave(getPeriodicWave('piano'));
+    osc.frequency.value = freq;
+    osc.connect(noteGain);
+    osc.start(now);
+    osc.stop(now + duration + 0.05);
+
+    const transGain = toneAudioCtx.createGain();
+    transGain.gain.setValueAtTime(peak * 0.4, now);
+    transGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
+    transGain.connect(toneAnalyser);
+
+    const transOsc = toneAudioCtx.createOscillator();
+    transOsc.type = 'triangle';
+    transOsc.frequency.value = freq * 3;
+    transOsc.connect(transGain);
+    transOsc.start(now);
+    transOsc.stop(now + 0.12);
+  }
+
+  function pianoScheduler(){
+    while (pianoNextNoteTime < toneAudioCtx.currentTime + PIANO_SCHEDULE_AHEAD){
+      playPianoNote(toneFreq, currentGain(), PIANO_NOTE_DURATION);
+      pianoNextNoteTime += PIANO_INTERVAL;
+    }
+    pianoSchedulerTimer = setTimeout(pianoScheduler, PIANO_LOOKAHEAD);
+  }
+
+  function startPianoScheduler(){
+    pianoNextNoteTime = toneAudioCtx.currentTime + 0.05;
+    pianoScheduler();
+  }
+
+  function stopPianoScheduler(){
+    clearTimeout(pianoSchedulerTimer);
+    pianoSchedulerTimer = null;
+  }
+
   function startTone(){
     if (toneIsPlaying) return;
     try{
@@ -1865,23 +2270,16 @@
     }
 
     const begin = () => {
-      toneOsc = toneAudioCtx.createOscillator();
-      toneGain = toneAudioCtx.createGain();
       toneAnalyser = toneAudioCtx.createAnalyser();
       toneAnalyser.fftSize = 1024;
       toneDataArray = new Float32Array(toneAnalyser.fftSize);
-
-      toneOsc.type = toneWave;
-      toneOsc.frequency.value = toneFreq;
-
-      const now = toneAudioCtx.currentTime;
-      toneGain.gain.setValueAtTime(0.0001, now);
-      toneGain.gain.linearRampToValueAtTime(currentGain(), now + 0.06);
-
-      toneOsc.connect(toneGain);
-      toneGain.connect(toneAnalyser);
       toneAnalyser.connect(toneAudioCtx.destination);
-      toneOsc.start();
+
+      if (toneWave === 'piano'){
+        startPianoScheduler();
+      } else {
+        startContinuousOscillator();
+      }
 
       toneIsPlaying = true;
       tonePlayBtn.textContent = '■ STOP TONE';
@@ -1899,13 +2297,11 @@
 
   function stopTone(){
     if (!toneIsPlaying) return;
-    const now = toneAudioCtx.currentTime;
-    try{
-      toneGain.gain.cancelScheduledValues(now);
-      toneGain.gain.setValueAtTime(toneGain.gain.value, now);
-      toneGain.gain.linearRampToValueAtTime(0.0001, now + 0.05);
-      toneOsc.stop(now + 0.07);
-    } catch(e){ /* ignore */ }
+    if (toneWave === 'piano'){
+      stopPianoScheduler(); // stop scheduling new strikes; the last one rings out naturally
+    } else {
+      stopContinuousOscillator();
+    }
     toneIsPlaying = false;
     tonePlayBtn.textContent = '▶ PLAY TONE';
     tonePlayBtn.classList.remove('playing');
