@@ -504,7 +504,7 @@
   .gauge-labels span.flat-label{ color: var(--wk-blue); }
   .gauge-labels span.sharp-label{ color: var(--wk-red); }
 
-  #needle{ transition: transform 0.18s ease-out; }
+  #needle{ transition: transform 0.12s linear; }
 
   .note-display{
     text-align:center;
@@ -663,13 +663,13 @@
   /* ================= ROBLOX TONE LAB ================= */
 
   #tonePanel{
-    padding: 24px 22px 26px;
+    padding: 16px 18px 18px;
     background: var(--syn-wood);
     border: 4px solid var(--syn-wood-dark);
     border-radius: var(--radius-lg);
   }
 
-  .syn-mascot{ display:flex; justify-content:center; margin-bottom: 12px; }
+  .syn-mascot{ display:flex; justify-content:center; margin-bottom: 6px; }
   .syn-mascot svg{ transition: transform 0.18s ease; }
   .syn-mascot.grooving svg{ animation: mascotGroove 0.9s ease-in-out infinite; }
   @keyframes mascotGroove{
@@ -681,14 +681,14 @@
     background: var(--syn-black);
     border: 3px solid var(--syn-wood-dark);
     border-radius: 10px;
-    padding: 10px 12px 12px;
-    margin-bottom: 18px;
+    padding: 8px 10px 10px;
+    margin-bottom: 12px;
     box-shadow: inset 0 2px 6px rgba(0,0,0,0.4), 0 3px 0 rgba(0,0,0,0.2);
   }
   #scopeCanvas{
     display:block;
     width: 100%;
-    height: 84px;
+    height: 60px;
     border-radius: 5px;
     border: 2px solid #10131a;
     background:
@@ -697,7 +697,7 @@
   }
   .syn-readout{
     display:flex; flex-wrap: wrap; align-items:baseline; justify-content:center; gap: 6px;
-    margin-top: 10px;
+    margin-top: 6px;
   }
   .syn-freq{
     font-family:'Titan One', cursive;
@@ -730,17 +730,17 @@
     letter-spacing: 0.06em;
     color: var(--syn-metal);
     text-align:center;
-    margin: 4px 0 8px;
+    margin: 2px 0 5px;
     text-transform: uppercase;
   }
 
-  .note-picker{ display:flex; gap:6px; margin-bottom: 16px; }
+  .note-picker{ display:flex; gap:6px; margin-bottom: 10px; }
   .note-picker button{
     flex:1;
     background: var(--syn-cream);
     border: 2.5px solid var(--syn-wood-dark);
     border-radius: 10px;
-    padding: 12px 0;
+    padding: 9px 0;
     font-family:'Titan One', cursive;
     font-size: 0.9rem;
     color: var(--syn-ink);
@@ -755,7 +755,7 @@
   }
   .note-picker button:active{ transform: translate(3px,3px); box-shadow:none; }
 
-  .syn-two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+  .syn-two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
 
   .accidental-picker{ display:flex; gap:6px; }
   .accidental-picker button{
@@ -763,7 +763,7 @@
     background: var(--syn-cream);
     border: 2.5px solid var(--syn-wood-dark);
     border-radius: 10px;
-    padding: 10px 0;
+    padding: 8px 0;
     font-size: 1rem;
     font-weight: 700;
     color: var(--syn-ink);
@@ -782,7 +782,7 @@
     background: var(--syn-cream);
     border: 2.5px solid var(--syn-wood-dark);
     border-radius: 10px;
-    padding: 6px 8px;
+    padding: 5px 8px;
     box-shadow: 3px 3px 0 var(--syn-wood-dark);
   }
   .octave-stepper span{
@@ -793,7 +793,7 @@
     text-align:center;
   }
   .step-btn.small{
-    width: 30px; height: 30px;
+    width: 26px; height: 26px;
     border-radius: 50%;
     border: 2px solid var(--syn-wood-dark);
     background: var(--syn-orange);
@@ -805,13 +805,13 @@
   }
   .step-btn.small:active{ transform: translate(2px,2px); box-shadow:none; }
 
-  .custom-freq-row{ display:flex; gap: 8px; margin-bottom: 18px; }
+  .custom-freq-row{ display:flex; gap: 8px; margin-bottom: 10px; }
   .custom-freq-row input{
     flex:1;
     background: var(--syn-cream);
     border: 2.5px solid var(--syn-wood-dark);
     border-radius: 10px;
-    padding: 10px 12px;
+    padding: 8px 12px;
     font-family:'IBM Plex Mono', monospace;
     font-size: 0.9rem;
     color: var(--syn-ink);
@@ -829,14 +829,14 @@
   }
   .custom-freq-row .tap-btn:active{ transform: translate(2px,2px); box-shadow:none; }
 
-  .waveform-picker{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
+  .waveform-picker{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
   .waveform-picker button{
-    display:flex; flex-direction:column; align-items:center; gap: 4px;
+    display:flex; flex-direction:column; align-items:center; gap: 3px;
     background: var(--syn-cream);
     color: var(--syn-ink);
     border: 2.5px solid var(--syn-wood-dark);
     border-radius: 10px;
-    padding: 10px 4px 8px;
+    padding: 8px 3px 6px;
     font-family:'Baloo 2', cursive;
     font-weight: 700;
     font-size: 0.6rem;
@@ -851,7 +851,7 @@
     transform: translate(2px,2px);
   }
 
-  .volume-row{ display:flex; align-items:center; gap: 10px; margin-bottom: 22px; }
+  .volume-row{ display:flex; align-items:center; gap: 10px; margin-bottom: 14px; }
   .vol-icon{ font-size: 0.9rem; flex:none; }
   .vol-value{
     font-family:'Baloo 2', cursive;
@@ -887,6 +887,7 @@
   }
 
   .syn-play-btn{
+    padding: 12px;
     background: linear-gradient(180deg, var(--syn-orange), var(--syn-orange-dark));
     color: #fff;
     font-family:'Titan One', cursive;
@@ -912,12 +913,12 @@
   /* Global safety net so nothing can force horizontal scrolling on narrow phones */
   html, body{ overflow-x: hidden; }
 
-  /* Tighter spacing on narrow phones (iPhone SE up through standard iPhones) */
-  @media (max-width: 400px){
-    body{ padding-top: 14px; padding-bottom: 20px; }
-    .brand{ margin-bottom: 10px; }
-    .mode-toggle{ margin-bottom: 14px; }
-    #metronomePanel, #tunerPanel, #tonePanel{ padding-top: 18px; padding-bottom: 18px; }
+  /* Tighter spacing on narrow phones (iPhone SE up through Pro Max widths) */
+  @media (max-width: 430px){
+    body{ padding-top: 10px; padding-bottom: 14px; }
+    .brand{ margin-bottom: 8px; }
+    .mode-toggle{ margin-bottom: 10px; }
+    #metronomePanel, #tunerPanel, #tonePanel{ padding-top: 14px; padding-bottom: 14px; }
 
     .beat-stage{ height: 118px; }
     .note-block{ width: 76px; height: 76px; }
@@ -932,16 +933,17 @@
     .gauge-wrap svg{ width: 220px; height: auto; }
     .status-row{ margin: 10px 0 14px; }
 
-    .syn-mascot svg{ width: 52px; height: 64px; }
-    .syn-mascot{ margin-bottom: 8px; }
-    .syn-screen{ margin-bottom: 12px; padding: 8px 10px 10px; }
-    #scopeCanvas{ height: 68px; }
-    .note-picker{ margin-bottom: 12px; }
-    .syn-two-col{ margin-bottom: 12px; gap: 10px; }
-    .custom-freq-row{ margin-bottom: 12px; }
-    .waveform-picker{ margin-bottom: 12px; }
-    .waveform-picker button{ font-size: 0.5rem; padding: 8px 2px 6px; }
-    .volume-row{ margin-bottom: 16px; }
+    .syn-mascot svg{ width: 38px; height: 48px; }
+    .syn-mascot{ margin-bottom: 4px; }
+    .syn-screen{ margin-bottom: 8px; padding: 6px 8px 8px; }
+    #scopeCanvas{ height: 48px; }
+    .note-picker{ margin-bottom: 8px; }
+    .syn-two-col{ margin-bottom: 8px; gap: 8px; }
+    .custom-freq-row{ margin-bottom: 8px; }
+    .waveform-picker{ margin-bottom: 8px; }
+    .waveform-picker button{ font-size: 0.5rem; padding: 6px 2px 5px; }
+    .volume-row{ margin-bottom: 10px; }
+    .syn-play-btn{ padding: 10px; }
 
     footer{ margin-top: 14px; }
   }
@@ -1089,7 +1091,7 @@
   <section class="panel" id="tonePanel">
 
     <div class="syn-mascot" id="synMascot">
-      <svg width="64" height="80" viewBox="0 0 80 100">
+      <svg width="46" height="58" viewBox="0 0 80 100">
         <rect x="20" y="6" width="40" height="34" rx="8" fill="#f9de00" stroke="#1c1c1c" stroke-width="3"/>
         <circle cx="32" cy="23" r="3" fill="#1c1c1c"/>
         <circle cx="48" cy="23" r="3" fill="#1c1c1c"/>
@@ -1101,7 +1103,7 @@
     </div>
 
     <div class="syn-screen">
-      <canvas id="scopeCanvas" width="280" height="84"></canvas>
+      <canvas id="scopeCanvas" width="280" height="60"></canvas>
       <div class="syn-readout">
         <span class="syn-freq" id="freqReadout">440.00</span><span class="syn-freq-unit">Hz</span>
         <span class="syn-note-readout" id="noteReadout">A4</span>
@@ -1140,7 +1142,7 @@
 
     <div class="syn-label">OR DIAL IN A CUSTOM FREQUENCY (Hz)</div>
     <div class="custom-freq-row">
-      <input type="number" id="customFreqInput" min="20" max="5000" step="0.01" placeholder="e.g. 432">
+      <input type="number" id="customFreqInput" min="20" max="20000" step="0.01" placeholder="e.g. 432">
       <button class="tap-btn" id="customFreqApply" type="button">SET</button>
     </div>
 
@@ -1533,6 +1535,7 @@
   // low to feel responsive, so the peak lets loud sounds actually move the bar.
   const DB_FLOOR = -70;   // this and below is treated as silence (bar empty)
   const DB_CEIL  = -6;    // loud, near-clipping input (bar full)
+  const DB_DISPLAY_MAX = 100; // the readout number scales 0 (silence) .. 100 (loudest)
   let dbSmoothed = DB_FLOOR;
   function computeDbFS(buf){
     let sumSquares = 0, peak = 0;
@@ -1559,7 +1562,10 @@
     const pct = Math.max(0, Math.min(100, ((dbSmoothed - DB_FLOOR) / (DB_CEIL - DB_FLOOR)) * 100));
     dbMeterFill.style.width = pct + '%';
     const zone = dbZone(dbSmoothed);
-    dbReadout.textContent = Math.round(dbSmoothed) + ' dBFS · ' + zone.name;
+    // Display as a positive scale (0 = silence, 100 = loudest) rather than
+    // the internal negative dBFS value, so bigger number = louder sound.
+    const displayDb = Math.round(((dbSmoothed - DB_FLOOR) / (0 - DB_FLOOR)) * DB_DISPLAY_MAX);
+    dbReadout.textContent = displayDb + ' dB · ' + zone.name;
     dbReadout.style.color = zone.color;
   }
   function resetDbMeter(){
@@ -1575,7 +1581,7 @@
   const micSupportedHere = !!(navigator.mediaDevices && (navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia));
   const isFileProtocol = (window.location.protocol === 'file:');
 
-  const NOTE_STRINGS = ['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
+  const NOTE_STRINGS = ['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B'];
 
   const LINES = {
     standby:  ["Ugh, do I *have* to sing?", "Fine. I'll try. Once.", "This better not be embarrassing."],
@@ -1624,13 +1630,15 @@
   let frameSkip = 0;
 
   // ---- stability state ----
-  const HISTORY_SIZE = 7;
-  const CLARITY_THRESHOLD = 0.88;  // reject noisy / ambiguous frames
-  const SMOOTHING_ALPHA = 0.2;     // low-pass factor for the displayed frequency
+  const HISTORY_SIZE = 11;
+  const CLARITY_THRESHOLD = 0.9;   // reject noisy / ambiguous frames
+  const SMOOTHING_ALPHA = 0.1;     // low-pass factor for the displayed frequency
   const OCTAVE_JUMP_CENTS = 150;   // treat bigger single-frame jumps as suspect
   const SILENCE_FRAMES_TO_RESET = 6;
+  const NEEDLE_SMOOTHING_ALPHA = 0.15; // extra low-pass just for the needle angle
   let freqHistory = [];
   let smoothedFreq = null;
+  let smoothedCents = null;
   let silenceCounter = 0;
 
   function median(arr){
@@ -1641,6 +1649,7 @@
   function resetSmoothing(){
     freqHistory = [];
     smoothedFreq = null;
+    smoothedCents = null;
   }
 
   function noteFromPitch(frequency){
@@ -1739,7 +1748,11 @@
     noteOctave.textContent = octave;
     freqDisplay.textContent = freq.toFixed(1) + ' Hz';
     centsDisplay.textContent = (cents > 0 ? '+' : (cents < 0 ? '' : '±')) + cents + '¢';
-    setNeedle(cents);
+
+    // Smooth the needle's own angle separately from the numeric readout so
+    // small frame-to-frame wobble in `cents` doesn't make the needle twitch.
+    smoothedCents = (smoothedCents === null) ? cents : (NEEDLE_SMOOTHING_ALPHA*cents + (1-NEEDLE_SMOOTHING_ALPHA)*smoothedCents);
+    setNeedle(smoothedCents);
 
     if (Math.abs(cents) <= 5){
       statusPill.textContent = 'IN TUNE';
@@ -1939,6 +1952,18 @@
   let toneNoiseFilter = null;
   let toneNoiseGain = null;
 
+  // Violin realism extras: a second, slightly-detuned oscillator (the way two
+  // strings/bow imperfections never sit at 100% identical pitch, producing a
+  // natural "beating" shimmer), a slow tremolo on the amplitude, and a thin
+  // layer of filtered bow-noise for string texture.
+  let toneOsc2 = null;
+  let toneOsc2Gain = null;
+  let toneTremoloLFO = null;
+  let toneTremoloGain = null;
+  let violinNoiseSource = null;
+  let violinNoiseFilter = null;
+  let violinNoiseGain = null;
+
   // Piano notes decay naturally rather than sustaining, so instead of one
   // continuous oscillator we re-strike a fresh note on a steady pulse —
   // 30 BPM, i.e. one strike every 2 seconds.
@@ -1992,6 +2017,10 @@
       if (toneNoiseFilter){
         toneNoiseFilter.frequency.setTargetAtTime(Math.max(800, toneFreq * 2), now, 0.05);
       }
+      if (toneOsc2){
+        toneOsc2.frequency.cancelScheduledValues(now);
+        toneOsc2.frequency.setTargetAtTime(toneFreq * Math.pow(2, 6 / 1200), now, 0.015);
+      }
     }
   }
 
@@ -2027,7 +2056,7 @@
   function applyCustomFrequency(){
     const val = parseFloat(customFreqInput.value);
     if (!isFinite(val) || val <= 0) return;
-    toneCustomFreq = Math.max(20, Math.min(5000, val));
+    toneCustomFreq = Math.max(20, Math.min(20000, val));
     toneFreq = toneCustomFreq;
     toneIsCustomFreq = true;
     [...notePicker.children].forEach(b => b.classList.remove('active'));
@@ -2044,8 +2073,8 @@
   // "flute" oscillator type, so we shape the harmonic series ourselves).
   const INSTRUMENT_HARMONICS = {
     piano:  [1, 0.55, 0.33, 0.18, 0.14, 0.10, 0.07, 0.05, 0.03, 0.02],
-    violin: [1, 0.75, 0.55, 0.45, 0.40, 0.30, 0.25, 0.20, 0.15, 0.12, 0.08],
-    flute:  [1, 0.12, 0.06, 0.02]
+    violin: [1, 0.68, 0.58, 0.5, 0.38, 0.34, 0.28, 0.24, 0.19, 0.16, 0.13, 0.11, 0.09, 0.07, 0.05, 0.04],
+    flute:  [1, 0.05, 0.14, 0.025, 0.03]
   };
   let toneWaveCache = {};
   function getPeriodicWave(name){
@@ -2108,6 +2137,12 @@
       toneGain.gain.setTargetAtTime(currentGain(), now, 0.03);
       if (toneNoiseGain){
         toneNoiseGain.gain.setTargetAtTime(currentGain() * FLUTE_NOISE_LEVEL, now, 0.03);
+      }
+      if (toneTremoloGain){
+        toneTremoloGain.gain.setTargetAtTime(currentGain() * 0.06, now, 0.03);
+      }
+      if (violinNoiseGain){
+        violinNoiseGain.gain.setTargetAtTime(currentGain() * 0.035, now, 0.03);
       }
     }
   });
@@ -2186,7 +2221,49 @@
       toneVibratoLFO.start();
     }
 
-    // Flute gets a soft, filtered breath-noise layer mixed underneath the tone.
+    // Violin gets a second oscillator tuned a few cents away from the first.
+    // A real bowed note is never two perfectly identical waves — the tiny
+    // mismatch beats against the main tone and gives it a warm, alive shimmer
+    // instead of the dead-flat sound a single periodic wave produces.
+    if (toneWave === 'violin'){
+      toneOsc2 = toneAudioCtx.createOscillator();
+      toneOsc2.setPeriodicWave(getPeriodicWave('violin'));
+      toneOsc2.frequency.value = toneFreq * Math.pow(2, 6 / 1200); // +6 cents
+      toneOsc2Gain = toneAudioCtx.createGain();
+      toneOsc2Gain.gain.value = 0.55; // blended under the main voice, not equal to it
+      toneOsc2.connect(toneOsc2Gain);
+      toneOsc2Gain.connect(toneGain);
+      toneOsc2.start();
+
+      // Slow, shallow amplitude tremolo — bow pressure/speed is never
+      // perfectly constant, so loudness breathes slightly over time.
+      toneTremoloLFO = toneAudioCtx.createOscillator();
+      toneTremoloLFO.type = 'sine';
+      toneTremoloLFO.frequency.value = 4.2;
+      toneTremoloGain = toneAudioCtx.createGain();
+      toneTremoloGain.gain.value = currentGain() * 0.06;
+      toneTremoloLFO.connect(toneTremoloGain);
+      toneTremoloGain.connect(toneGain.gain);
+      toneTremoloLFO.start();
+
+      // A thin, high, filtered noise layer for bow-on-string friction texture.
+      violinNoiseSource = createNoiseSource();
+      violinNoiseFilter = toneAudioCtx.createBiquadFilter();
+      violinNoiseFilter.type = 'bandpass';
+      violinNoiseFilter.frequency.value = 5200;
+      violinNoiseFilter.Q.value = 0.6;
+      violinNoiseGain = toneAudioCtx.createGain();
+      violinNoiseGain.gain.setValueAtTime(0.0001, now);
+      violinNoiseGain.gain.linearRampToValueAtTime(currentGain() * 0.035, now + attackTime);
+      violinNoiseSource.connect(violinNoiseFilter);
+      violinNoiseFilter.connect(violinNoiseGain);
+      violinNoiseGain.connect(toneAnalyser);
+      violinNoiseSource.start();
+    }
+
+    // Flute gets a soft, filtered breath-noise layer mixed underneath the tone,
+    // with a brief brighter "chiff" right at the attack — the little burst of
+    // unpitched air noise you hear as a flutist's tongue releases the note.
     if (toneWave === 'flute'){
       toneNoiseSource = createNoiseSource();
       toneNoiseFilter = toneAudioCtx.createBiquadFilter();
@@ -2194,8 +2271,11 @@
       toneNoiseFilter.frequency.value = Math.max(800, toneFreq * 2);
       toneNoiseFilter.Q.value = 0.7;
       toneNoiseGain = toneAudioCtx.createGain();
+      const chiffPeak = currentGain() * FLUTE_NOISE_LEVEL * 2.2;
+      const sustainLevel = currentGain() * FLUTE_NOISE_LEVEL;
       toneNoiseGain.gain.setValueAtTime(0.0001, now);
-      toneNoiseGain.gain.linearRampToValueAtTime(currentGain() * FLUTE_NOISE_LEVEL, now + attackTime);
+      toneNoiseGain.gain.linearRampToValueAtTime(chiffPeak, now + 0.018);
+      toneNoiseGain.gain.exponentialRampToValueAtTime(Math.max(0.0001, sustainLevel), now + 0.15);
       toneNoiseSource.connect(toneNoiseFilter);
       toneNoiseFilter.connect(toneNoiseGain);
       toneNoiseGain.connect(toneAnalyser);
@@ -2216,6 +2296,27 @@
       try{ toneVibratoLFO.stop(now + 0.07); } catch(e){ /* ignore */ }
       toneVibratoLFO = null;
       toneVibratoGain = null;
+    }
+    if (toneOsc2){
+      try{ toneOsc2.stop(now + 0.07); } catch(e){ /* ignore */ }
+      toneOsc2 = null;
+      toneOsc2Gain = null;
+    }
+    if (toneTremoloLFO){
+      try{ toneTremoloLFO.stop(now + 0.07); } catch(e){ /* ignore */ }
+      toneTremoloLFO = null;
+      toneTremoloGain = null;
+    }
+    if (violinNoiseSource){
+      try{
+        violinNoiseGain.gain.cancelScheduledValues(now);
+        violinNoiseGain.gain.setValueAtTime(violinNoiseGain.gain.value, now);
+        violinNoiseGain.gain.linearRampToValueAtTime(0.0001, now + 0.05);
+        violinNoiseSource.stop(now + 0.07);
+      } catch(e){ /* ignore */ }
+      violinNoiseSource = null;
+      violinNoiseFilter = null;
+      violinNoiseGain = null;
     }
     if (toneNoiseSource){
       try{
